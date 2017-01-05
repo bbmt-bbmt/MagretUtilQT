@@ -1,0 +1,11 @@
+<RCC>
+  <qresource prefix="/icones">
+    <file alias="groupe_ordi">img/groupe_ordi.png</file>
+    <file alias="ordi">img/ordi.png</file>
+    <file alias="error">img/red_circle.jpg</file>
+    <file alias="app_icon">img/admin-icon.png</file>
+    <file alias="enable">img/green_circle.jpg</file>
+    <file alias="disable">img/grey_circle.jpg</file>
+	<file alias="purple">img/purple_circle.png</file>
+  </qresource>
+</RCC>
