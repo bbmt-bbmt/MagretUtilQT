@@ -225,7 +225,7 @@ class Machine:
     def ping(self):
         try:
             process = QProcess()
-            process.start("ping.exe -n 1 -w 500 -4 " + self.name)
+            process.start("ping.exe -n 1 -w 1000 -4 " + self.name)
             process.waitForFinished()
             result_ping = process.readAllStandardOutput()
             result_ping = bytes(result_ping).decode('cp850', errors='ignore')

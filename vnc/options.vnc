@@ -27,7 +27,7 @@ use_encoding_18=1
 use_encoding_19=1
 preferred_encoding=5
 restricted=0
-viewonly=0
+viewonly=1
 nostatus=0
 nohotkeys=0
 showtoolbar=1
@@ -88,3 +88,8 @@ x=-32000
 y=-32000
 w=160
 h=28
+[192.168.56.1]
+x=-1272
+y=107
+w=1264
+h=769
