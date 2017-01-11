@@ -13,6 +13,7 @@ import var_global
 import logger
 import logging
 import multiprocessing
+import sip
 
 # hack pour le multiprocessing sur win
 # https://github.com/pyinstaller/pyinstaller/wiki/Recipe-Multiprocessing
@@ -60,6 +61,8 @@ def erreur_final(e_type, e_value, e_tb):
 
 
 def main(args):
+    # pour eviter le crach de python à la sortie avec python3.4
+    sip.setdestroyonexit(False)
     sys.excepthook = erreur_final
     if sys.argv[1:]:
         try:
@@ -86,11 +89,13 @@ def main(args):
     log_dialog = logger.ui_log_dialog()
     logger.log_queue = log_queue
     log_listenner_thread = logger.LogListenerThread(var_global.debug_level, log_queue, log_dialog)
-    log_listenner_thread.setDaemon(True)
+    # log_listenner_thread.setDaemon(True)
     log_listenner_thread.start()
 
     main_app = MainApp(log_dialog)
-
+    # pour eviter le crash de python3.4 on exit
+    app.setActiveWindow(main_app)
+    
     main_app.setWindowIcon(QtGui.QIcon(":/icones/app_icon"))
     main_app.setWindowTitle("MagretUtil")
 
@@ -101,11 +106,19 @@ def main(args):
     log_queue.put_nowait(None)
     log_listenner_thread.join()
 
-    main_app.ping.wait()
+    # if main_app.ping.isRunning():
+    # 	main_app.ping.wait()
+    # 	print("fin du ping")
+    # pour éviter le crash de python au cas ou ....
+    # main_app.ping.ping_process.terminate()
+    # main_app.ping.terminate()
+    # del main_app.ping
+
     # pour éviter de faire crashe python qui va attendre que tous les widget 
     # de mainwindows soit détruit
-    del main_app
-
+    # del main_app
+    # del app
+    print("tout est cool?")
     return exit_result
 
 if __name__ == "__main__":

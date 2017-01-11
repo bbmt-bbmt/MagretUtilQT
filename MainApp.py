@@ -668,9 +668,14 @@ class MainApp(QtWidgets.QMainWindow, Ui_MainWindow):
         return
 
     def closeEvent(self, event):
+        # on cache pour que ping.wait ne soit pas visible
+        self.hide()
+
         # on termine proprement les pings
         # pour eviter des erreurs
         self.ping.stop = True
+        if self.ping.isRunning():
+            self.ping.wait()
 
         # on reset les handler du logger pour eviter que des messages en attente
         # ne soit écrit dans le ui_dialog qui n'existera plus

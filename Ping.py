@@ -249,6 +249,5 @@ class Ping(QThread):
         if self.ping_process.is_alive():
             log.info("ping process kill")
             self.ping_process.terminate()
-        print("fin")
         log.info("ping process end")
         return

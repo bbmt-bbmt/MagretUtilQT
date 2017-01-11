@@ -230,8 +230,10 @@ class Machine:
             result_ping = process.readAllStandardOutput()
             result_ping = bytes(result_ping).decode('cp850', errors='ignore')
             # recupere l'ip dans la réponse (allumé ou pas)
-            # reçus = 1,
-            match_etat = re.search(r'us = 1,', result_ping)
+            # on ne peut pas tester reçus = 1, car lors l'host est injoignablre on recoit
+            # quand meme un packet
+            # on teste TTL=
+            match_etat = re.search(r'TTL=', result_ping)
             etat = True if match_etat else False
         except (IndexError, AttributeError):
             etat = False
