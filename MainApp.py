@@ -676,7 +676,10 @@ class MainApp(QtWidgets.QMainWindow, Ui_MainWindow):
         self.ping.stop = True
         if self.ping.isRunning():
             self.ping.wait()
-
+        # self.ping.ping_process.terminate()
+        # self.ping.terminate()
+        # self.ping_checkbox.setCheckState(Qt.Unchecked)
+        # self.ping_thread_edit.setEnabled(True)
         # on reset les handler du logger pour eviter que des messages en attente
         # ne soit écrit dans le ui_dialog qui n'existera plus
         # pas terrible le qthandler devrait être ajouté dans cette classe et supprimer dans 

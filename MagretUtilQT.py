@@ -14,6 +14,7 @@ import logger
 import logging
 import multiprocessing
 import sip
+import gc
 
 # hack pour le multiprocessing sur win
 # https://github.com/pyinstaller/pyinstaller/wiki/Recipe-Multiprocessing
@@ -62,7 +63,7 @@ def erreur_final(e_type, e_value, e_tb):
 
 def main(args):
     # pour eviter le crach de python à la sortie avec python3.4
-    sip.setdestroyonexit(False)
+    # sip.setdestroyonexit(False)
     sys.excepthook = erreur_final
     if sys.argv[1:]:
         try:
@@ -116,9 +117,10 @@ def main(args):
 
     # pour éviter de faire crashe python qui va attendre que tous les widget 
     # de mainwindows soit détruit
-    # del main_app
+    del main_app
     # del app
     print("tout est cool?")
+    gc.collect()
     return exit_result
 
 if __name__ == "__main__":
