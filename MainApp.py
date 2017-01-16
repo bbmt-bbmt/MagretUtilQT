@@ -599,7 +599,8 @@ class MainApp(QtWidgets.QMainWindow, Ui_MainWindow):
             try:
                 Privilege.get_privilege(login, password, domaine, uac=True)
                 self.ping.stop = True
-                raise SystemExit(0)
+                self.close()
+                # raise SystemExit(0)
             except OSError as o:
                 util.Msg.show("Erreur lors de l'élevation de privilège: " + var_global.fix_str(o.strerror),
                               "critical")
