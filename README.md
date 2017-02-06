@@ -15,3 +15,6 @@ Les binaires (30M) pour des systèmes non à jours (le binaire à 10M en plus po
 
 lien si on veut installer la mise à jour KB2999226:
 [microsoft update](https://support.microsoft.com/fr-fr/help/2999226/update-for-universal-c-runtime-in-windows)
+
+Ne pas oublier les fichiers de configuration et le dossier vnc à mettre dans le même repertoire que l'executable (à dezipper)
+[zip](https://github.com/bbmt-bbmt/MagretUtilQT/raw/master/binaires/configuration.zip)
